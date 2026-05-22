@@ -1,0 +1,15 @@
+Uncaught Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Footer`.
+    at eval (src/components/layout/footer.tsx:25:19)
+    at Array.map (<anonymous>:1:18)
+    at Footer (src/components/layout/footer.tsx:23:51)
+    at Home (src/app/page.tsx:36:7)
+  23 |               {[Globe, Linkedin, Github,...
+  24 |                 <a key={idx} href="#" cl...
+> 25 |                   <Icon size={18} />
+     |                   ^
+  26 |                 </a>
+  27 |               ))}
+  28 |             </div>
+
