@@ -120,18 +120,18 @@ export default function FAQPage() {
       <Navbar />
       
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-brand-navy relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-blue/10 blur-[120px] rounded-full translate-x-1/3 -translate-y-1/3"></div>
+      <section className="pt-32 pb-20 bg-white relative overflow-hidden border-b border-slate-100">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-blue/5 blur-[120px] rounded-full translate-x-1/3 -translate-y-1/3"></div>
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold text-brand-navy mb-6">
               How can we <span className="text-brand-blue">Help</span>?
             </h1>
-            <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
               Find answers to common questions about Vemtap Health, HMO management, optical workflows, and more.
             </p>
             
@@ -143,7 +143,7 @@ export default function FAQPage() {
                 placeholder="Search for answers..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-14 pr-6 py-5 rounded-2xl bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:bg-white focus:text-brand-navy transition-all"
+                className="w-full pl-14 pr-6 py-5 rounded-2xl bg-slate-100 border border-slate-200 text-brand-navy placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue/50 focus:bg-white transition-all"
               />
             </div>
           </motion.div>
