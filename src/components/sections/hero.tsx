@@ -4,9 +4,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { CheckCircle2, Play, Users, Calendar, Activity, QrCode, FileText } from "lucide-react";
+import { CheckCircle2, Play, Users, Calendar, Activity, QrCode, FileText, ChevronRight } from "lucide-react";
+import { useModals } from "@/lib/modal-context";
 
 export const Hero = () => {
+  const { openModal } = useModals();
+
   return (
     <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden hero-gradient">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -35,11 +38,11 @@ export const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 mb-10">
-            <Button variant="dark" size="lg" className="gap-2">
-              Start Free Trial <ChevronRight size={18} />
+            <Button variant="dark" size="lg" className="gap-2" onClick={() => openModal("demo")}>
+              Request Demo <ChevronRight size={18} />
             </Button>
-            <Button variant="outline" size="lg" className="gap-2">
-              <Play size={18} fill="currentColor" /> Book Demo
+            <Button variant="outline" size="lg" className="gap-2" onClick={() => openModal("tour")}>
+              <Play size={18} fill="currentColor" /> Watch Tour
             </Button>
           </div>
           
@@ -174,9 +177,3 @@ export const Hero = () => {
     </section>
   );
 };
-
-const ChevronRight = ({ size, className }: { size: number, className?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="m9 18 6-6-6-6"/>
-  </svg>
-);

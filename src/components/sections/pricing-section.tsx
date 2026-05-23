@@ -122,6 +122,7 @@ export const PricingSection = () => {
               <Button
                 variant={plan.popular ? "primary" : "outline"}
                 className="w-full py-4 text-base font-bold rounded-2xl"
+                onClick={() => openModal(plan.cta === "Contact Sales" ? "sales" : "demo")}
               >
                 {plan.cta}
               </Button>
