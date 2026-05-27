@@ -11,6 +11,7 @@ import { useModals } from "@/lib/modal-context";
 import { cn } from "@/lib/utils";
 import { CalendarDays, Users, ShieldCheck, TrendingUp, Clock, Plus, Trash2, CheckCircle2 } from "lucide-react";
 import { Modal } from "@/components/ui/modal";
+import { Tooltip } from "@/components/ui/tooltip";
 
 type TabType = "team" | "shifts" | "permissions";
 
@@ -352,39 +353,45 @@ export default function StaffPage() {
               <div className="space-y-4">
                   <div>
                       <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 block">Staff Member</label>
-                      <select 
-                        className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-900 outline-none"
-                        value={newShift.staffName}
-                        onChange={(e) => {
-                          const staff = clinicStaff.find(s => s.name === e.target.value);
-                          setNewShift({...newShift, staffName: e.target.value, role: staff?.role || ""});
-                        }}
-                      >
-                          {clinicStaff.map(s => <option key={s.id}>{s.name}</option>)}
-                      </select>
+                      <Tooltip content="Select the team member for this assignment">
+                        <select 
+                            className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-900 outline-none"
+                            value={newShift.staffName}
+                            onChange={(e) => {
+                            const staff = clinicStaff.find(s => s.name === e.target.value);
+                            setNewShift({...newShift, staffName: e.target.value, role: staff?.role || ""});
+                            }}
+                        >
+                            {clinicStaff.map(s => <option key={s.id}>{s.name}</option>)}
+                        </select>
+                      </Tooltip>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                       <div>
                           <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 block">Day</label>
-                          <select 
-                            className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-900 outline-none"
-                            value={newShift.day}
-                            onChange={(e) => setNewShift({...newShift, day: e.target.value})}
-                          >
-                              {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(d => <option key={d}>{d}</option>)}
-                          </select>
+                          <Tooltip content="Choose the calendar day for the shift">
+                            <select 
+                                className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-900 outline-none"
+                                value={newShift.day}
+                                onChange={(e) => setNewShift({...newShift, day: e.target.value})}
+                            >
+                                {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(d => <option key={d}>{d}</option>)}
+                            </select>
+                          </Tooltip>
                       </div>
                       <div>
                           <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 block">Shift Time</label>
-                          <select 
-                            className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-900 outline-none"
-                            value={newShift.shift}
-                            onChange={(e) => setNewShift({...newShift, shift: e.target.value as any})}
-                          >
-                              <option>Morning</option>
-                              <option>Afternoon</option>
-                              <option>Night</option>
-                          </select>
+                          <Tooltip content="Morning, Afternoon, or Night rotation">
+                            <select 
+                                className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-900 outline-none"
+                                value={newShift.shift}
+                                onChange={(e) => setNewShift({...newShift, shift: e.target.value as any})}
+                            >
+                                <option>Morning</option>
+                                <option>Afternoon</option>
+                                <option>Night</option>
+                            </select>
+                          </Tooltip>
                       </div>
                   </div>
               </div>
