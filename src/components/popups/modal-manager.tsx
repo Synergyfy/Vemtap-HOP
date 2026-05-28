@@ -7,6 +7,7 @@ import { ContactSalesPopup } from "./contact-sales-popup";
 import { OnboardingModal } from "./onboarding-modal";
 import { useModals } from "@/lib/modal-context";
 import { Button } from "@/components/ui/button";
+import { Tooltip } from "@/components/ui/tooltip";
 
 export const ModalManager = () => {
   const { activeModal, closeModal } = useModals();
@@ -30,29 +31,37 @@ export const ModalManager = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 block">Invoice ID</label>
-                  <input type="text" defaultValue="INV-2024-001" className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-900 outline-none" />
+                  <Tooltip content="Unique reference for this invoice">
+                    <input type="text" defaultValue="INV-2024-001" className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-900 outline-none" />
+                  </Tooltip>
                 </div>
                 <div>
                   <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 block">Status</label>
-                  <select className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-900 outline-none">
-                    <option>Pending</option>
-                    <option>Paid</option>
-                    <option>Overdue</option>
-                  </select>
+                  <Tooltip content="Current payment status">
+                    <select className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-900 outline-none">
+                        <option>Pending</option>
+                        <option>Paid</option>
+                        <option>Overdue</option>
+                    </select>
+                  </Tooltip>
                 </div>
               </div>
 
               <div>
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 block">Amount Due</label>
-                <div className="relative">
-                  <span className="absolute left-4 top-2.5 text-slate-400 font-bold">$</span>
-                  <input type="number" defaultValue="1240.00" className="w-full bg-slate-50 border border-slate-100 rounded-xl pl-8 pr-4 py-2.5 text-sm font-bold text-slate-900 outline-none" />
-                </div>
+                <Tooltip content="Total amount to be paid by the patient or HMO">
+                  <div className="relative">
+                    <span className="absolute left-4 top-2.5 text-slate-400 font-bold">$</span>
+                    <input type="number" defaultValue="1240.00" className="w-full bg-slate-50 border border-slate-100 rounded-xl pl-8 pr-4 py-2.5 text-sm font-bold text-slate-900 outline-none" />
+                  </div>
+                </Tooltip>
               </div>
 
               <div>
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 block">Notes</label>
-                <textarea className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 text-sm font-medium text-slate-600 outline-none min-h-[100px]" placeholder="Add invoice notes..."></textarea>
+                <Tooltip content="Additional information for internal or patient use">
+                  <textarea className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 text-sm font-medium text-slate-600 outline-none min-h-[100px]" placeholder="Add invoice notes..."></textarea>
+                </Tooltip>
               </div>
 
               <div className="flex items-center gap-3 pt-4 border-t border-slate-50">
@@ -74,20 +83,26 @@ export const ModalManager = () => {
             <div className="space-y-4">
               <div>
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Full Name</label>
-                <input type="text" className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 outline-none" />
+                <Tooltip content="Enter the staff member's legal name">
+                  <input type="text" className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 outline-none" />
+                </Tooltip>
               </div>
               <div>
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Email</label>
-                <input type="email" className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 outline-none" />
+                <Tooltip content="Professional email for dashboard access">
+                  <input type="email" className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 outline-none" />
+                </Tooltip>
               </div>
               <div>
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-1">Role</label>
-                <select className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 outline-none">
-                  <option>Doctor</option>
-                  <option>Nurse</option>
-                  <option>Receptionist</option>
-                  <option>Pharmacist</option>
-                </select>
+                <Tooltip content="Assign system permissions based on role">
+                  <select className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 outline-none">
+                    <option>Doctor</option>
+                    <option>Nurse</option>
+                    <option>Receptionist</option>
+                    <option>Pharmacist</option>
+                  </select>
+                </Tooltip>
               </div>
               <div className="flex items-center gap-3 pt-4">
                 <Button variant="ghost" className="flex-1" onClick={closeModal}>Cancel</Button>
@@ -105,19 +120,25 @@ export const ModalManager = () => {
             <div className="space-y-4">
               <div>
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">Branch Name</label>
-                <input type="text" placeholder="e.g. Vemtap Victoria Island" className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 outline-none font-bold text-slate-900" />
+                <Tooltip content="The identifying name for this location">
+                  <input type="text" placeholder="e.g. Vemtap Victoria Island" className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 outline-none font-bold text-slate-900" />
+                </Tooltip>
               </div>
               <div>
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">Location / Address</label>
-                <input type="text" className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 outline-none font-bold text-slate-900" />
+                <Tooltip content="Physical address of the clinic branch">
+                  <input type="text" className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 outline-none font-bold text-slate-900" />
+                </Tooltip>
               </div>
               <div>
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">Branch Manager</label>
-                <select className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 outline-none font-bold text-slate-900">
-                  <option>Select Manager</option>
-                  <option>Dr. A. Bello</option>
-                  <option>Dr. E. Nwachukwu</option>
-                </select>
+                <Tooltip content="Administrator responsible for this branch">
+                  <select className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 outline-none font-bold text-slate-900">
+                    <option>Select Manager</option>
+                    <option>Dr. A. Bello</option>
+                    <option>Dr. E. Nwachukwu</option>
+                  </select>
+                </Tooltip>
               </div>
               <div className="flex items-center gap-3 pt-4">
                 <Button variant="ghost" className="flex-1 rounded-xl font-bold" onClick={closeModal}>Cancel</Button>
@@ -138,21 +159,25 @@ export const ModalManager = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 block">Report Type</label>
-                  <select className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-900 outline-none">
-                    <option>Revenue Analysis</option>
-                    <option>Patient Growth</option>
-                    <option>HMO Performance</option>
-                    <option>Resource Utilization</option>
-                  </select>
+                  <Tooltip content="Choose the category of data for the report">
+                    <select className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-900 outline-none">
+                        <option>Revenue Analysis</option>
+                        <option>Patient Growth</option>
+                        <option>HMO Performance</option>
+                        <option>Resource Utilization</option>
+                    </select>
+                  </Tooltip>
                 </div>
                 <div>
                   <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 block">Timeframe</label>
-                  <select className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-900 outline-none">
-                    <option>Last 30 Days</option>
-                    <option>Quarter to Date</option>
-                    <option>Year to Date</option>
-                    <option>Custom Range</option>
-                  </select>
+                  <Tooltip content="Select the date range for data aggregation">
+                    <select className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-2.5 text-sm font-bold text-slate-900 outline-none">
+                        <option>Last 30 Days</option>
+                        <option>Quarter to Date</option>
+                        <option>Year to Date</option>
+                        <option>Custom Range</option>
+                    </select>
+                  </Tooltip>
                 </div>
               </div>
 
